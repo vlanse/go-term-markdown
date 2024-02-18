@@ -12,7 +12,7 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/MichaelMure/go-term-text"
+	text "github.com/MichaelMure/go-term-text"
 	"github.com/alecthomas/chroma"
 	"github.com/alecthomas/chroma/formatters"
 	"github.com/alecthomas/chroma/lexers"
@@ -24,7 +24,7 @@ import (
 	"github.com/kyokomi/emoji/v2"
 	"golang.org/x/net/html"
 
-	htmlWalker "github.com/MichaelMure/go-term-markdown/html"
+	htmlWalker "github.com/vlanse/go-term-markdown/html"
 )
 
 /*
@@ -106,6 +106,8 @@ type renderer struct {
 	// DitheringWithBlocks is recommended if a terminal UI library is used
 	imageDithering ansimage.DitheringMode
 
+	noImages bool
+
 	// all the custom left paddings, without the fixed space from leftPad
 	padAccumulator []string
 
@@ -127,7 +129,7 @@ type renderer struct {
 	table *tableRenderer
 }
 
-/// NewRenderer creates a new instance of the console renderer
+// / NewRenderer creates a new instance of the console renderer
 func NewRenderer(lineWidth int, leftPad int, opts ...Options) *renderer {
 	r := &renderer{
 		lineWidth:       lineWidth,
@@ -317,7 +319,7 @@ func (r *renderer) RenderNode(w io.Writer, node ast.Node, entering bool) ast.Wal
 		}
 
 	case *ast.Image:
-		if entering {
+		if entering && !r.noImages {
 			// the alt text/title is weirdly parsed and is actually
 			// a child text of this node
 			var title string

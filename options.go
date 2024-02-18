@@ -35,3 +35,9 @@ func WithBlockquoteShades(shades []shadeFmt) Options {
 		r.blockQuoteShade = shade(shades)
 	}
 }
+
+func WithoutImages() Options {
+	return func(r *renderer) {
+		r.noImages = true
+	}
+}
