@@ -1,6 +1,8 @@
 package markdown
 
-import "github.com/fatih/color"
+import (
+	"fmt"
+)
 
 var (
 	// we need a bunch of escape code for manual formatting
@@ -12,13 +14,52 @@ var (
 	crossedOutOff = "\x1b[29m"
 	greenOn       = "\x1b[32m"
 
-	resetAll = "\x1b[0m"
-	colorOff = "\x1b[39m"
+	//resetAll = "\x1b[0m"
+	//colorOff = "\x1b[39m"
 
-	Green        = color.New(color.FgGreen).SprintFunc()
-	HiGreen      = color.New(color.FgHiGreen).SprintFunc()
-	GreenBold    = color.New(color.FgGreen, color.Bold).SprintFunc()
-	Blue         = color.New(color.FgBlue).SprintFunc()
-	BlueBgItalic = color.New(color.BgBlue, color.Italic).SprintFunc()
-	Red          = color.New(color.FgRed).SprintFunc()
+	resetAll = "[]"
+	colorOff = "[]"
+
+	//Green        = color.New(color.FgGreen).SprintFunc()
+	//HiGreen      = color.New(color.FgHiGreen).SprintFunc()
+	//GreenBold    = color.New(color.FgGreen, color.Bold).SprintFunc()
+	//Blue = color.New(color.FgBlue).SprintFunc()
+	//BlueBgItalic = color.New(color.BgBlue, color.Italic).SprintFunc()
+	//Red          = color.New(color.FgRed).SprintFunc()
+
+	Green = func(a ...interface{}) string {
+		//return func(a ...interface{}) string {
+		return fmt.Sprintf("[green]%s[]", fmt.Sprint(a...))
+		//}
+	}
+
+	HiGreen = func(a ...interface{}) string {
+		//return func(a ...interface{}) string {
+		return fmt.Sprintf("[green]%s[]", fmt.Sprint(a...))
+		//}
+	}
+
+	GreenBold = func(a ...interface{}) string {
+		//return func(a ...interface{}) string {
+		return fmt.Sprintf("[green]%s[]", fmt.Sprint(a...))
+		//}
+	}
+
+	Blue = func(a ...interface{}) string {
+		//return func(a ...interface{}) string {
+		return fmt.Sprintf("[blue]%s[]", fmt.Sprint(a...))
+		//}
+	}
+
+	BlueBgItalic = func(a ...interface{}) string {
+		//return func(a ...interface{}) string {
+		return fmt.Sprintf("[green]%s[]", fmt.Sprint(a...))
+		//}
+	}
+
+	Red = func(a ...interface{}) string {
+		//return func(a ...interface{}) string {
+		return fmt.Sprintf("[red]%s[]", fmt.Sprint(a...))
+		//}
+	}
 )
