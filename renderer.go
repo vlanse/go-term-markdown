@@ -107,6 +107,7 @@ type renderer struct {
 	imageDithering ansimage.DitheringMode
 
 	noImages bool
+	noHTML   bool
 
 	// all the custom left paddings, without the fixed space from leftPad
 	padAccumulator []string
@@ -359,7 +360,9 @@ func (r *renderer) RenderNode(w io.Writer, node ast.Node, entering bool) ast.Wal
 		r.inlineAccumulator.WriteString(emojed)
 
 	case *ast.HTMLBlock:
-		r.renderHTMLBlock(w, node)
+		if !r.noHTML {
+			r.renderHTMLBlock(w, node)
+		}
 
 	case *ast.CodeBlock:
 		r.renderCodeBlock(w, node)

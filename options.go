@@ -41,3 +41,9 @@ func WithoutImages() Options {
 		r.noImages = true
 	}
 }
+
+func WithoutHTML() Options {
+	return func(r *renderer) {
+		r.noHTML = true
+	}
+}
